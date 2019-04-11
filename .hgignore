@@ -1,0 +1,7 @@
+syntax: glob
+DeckbuildingGame/.vs/
+*.csproj
+DeckbuildingGame/DeckbuildingGame.sln
+DeckbuildingGame/Library/
+DeckbuildingGame/Logs/
+DeckbuildingGame/obj/
