@@ -1,0 +1,20 @@
+Damage:::Inflige {0} points de dégâts à/au/aux {1}.
+TargetCreature:::la créature ciblée
+TargetPlayer:::joueur ciblé
+TargetWorker:::ouvriers du joueur ciblé
+TargetCreatureOrPlayer:::une créature ou à un joueur ciblé
+TargetEnemy:::l'ennemi ciblé
+AllCreatures:::toutes les créatures
+AllPlayers:::tous les joueurs
+AllWorkers:::tous les ouvriers
+Everything:::tout
+GenerateResources:::Générer {0} ressources.
+Heal:::Soigne {0} dégâts de/du {1}.
+Firebolt:::Éclair de Feu
+Worker:::Ouvrier
+Summon:::Invoquer {0} {1}.
+OnSummon:::Quand ceci est invoqué, 
+OnStartTurn:::Au début de chaque tour, 
+OnEndTurn:::À la fin de chaque tour, 
+OnActivation:::Coût {0}: 
+OnDeath:::Quand ceci meurt, 

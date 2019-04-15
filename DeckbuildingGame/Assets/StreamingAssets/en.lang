@@ -1,0 +1,20 @@
+Damage:::Deal {0} damage to {1}.
+TargetCreature:::target creature
+TargetPlayer:::target player
+TargetWorker:::target player's workers
+TargetCreatureOrPlayer:::target creature or player
+TargetEnemy:::target enemy
+AllCreatures:::all creatures
+AllPlayers:::all players
+AllWorkers:::all workers
+Everything:::everything
+GenerateResources:::Generate {0} resources.
+Heal:::Heal {0} damage from {1}.
+Firebolt:::Firebolt
+Worker:::Worker
+Summon:::Summon {0} {1}.
+OnSummon:::When summoned, 
+OnStartTurn:::At the beginning of each turn, 
+OnEndTurn:::At the end of each turn, 
+OnActivation:::Cost {0}: 
+OnDeath:::When this dies, 
