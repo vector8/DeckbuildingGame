@@ -11,6 +11,9 @@ public class InteractableCard : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Vector2 mouseOffset = Vector2.zero;
     public bool isMoving = false;
+    public GameObject contents, target;
+
+    private bool isTargeting = false;
 
     private CardData data;
 
@@ -28,6 +31,9 @@ public class InteractableCard : MonoBehaviour
             Vector2 mousePos = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) + mouseOffset;
             transform.position = new Vector3(mousePos.x, mousePos.y, transform.position.z);
         }
+
+        contents.SetActive(!(transform.position.y > -0.25f && isTargeting));
+        target.SetActive(transform.position.y > -0.25f && isTargeting);
     }
 
     public void initialize(CardData card)
@@ -35,7 +41,7 @@ public class InteractableCard : MonoBehaviour
         data = card;
         costText.text = card.cost.ToString();
         titleText.text = LocalizationManager.instance.getLocalizedString(card.cardName);
-        if(card.effects.Count == 1 && card.effects[0].effectType == CardData.CardEffect.EffectType.Summon)
+        if (card.effects.Count == 1 && card.effects[0].effectType == CardData.CardEffect.EffectType.Summon)
         {
             // this is a creature, render it differently.
             attackBg.SetActive(true);
@@ -57,6 +63,19 @@ public class InteractableCard : MonoBehaviour
     {
         isMoving = true;
 
+        // determine if any effects target a specific thing
+        foreach (CardData.CardEffect effect in data.effects)
+        {
+            if (effect.targetType == CardData.CardEffect.TargetType.SingleTargetAnything ||
+                effect.targetType == CardData.CardEffect.TargetType.SingleTargetCreature ||
+                effect.targetType == CardData.CardEffect.TargetType.SingleTargetCreatureOrPlayer ||
+                effect.targetType == CardData.CardEffect.TargetType.SingleTargetPlayer ||
+                effect.targetType == CardData.CardEffect.TargetType.SingleTargetWorker)
+            {
+                isTargeting = true;
+                break;
+            }
+        }
     }
 
     private void OnMouseUp()
@@ -69,6 +88,22 @@ public class InteractableCard : MonoBehaviour
             if (transform.position.y > -0.25f)
             {
                 // not in hand
+                if (isTargeting)
+                {
+                    isTargeting = false;
+                    // check if valid target is under mouse
+                    RaycastHit2D hit = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Vector2.zero, 0f);
+
+                    if(hit)
+                    {
+                        print(hit.transform.name);
+                    }
+                }
+                else
+                {
+                    // not a target specific spell, just cast
+
+                }
             }
             else
             {
